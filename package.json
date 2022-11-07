@@ -1,0 +1,56 @@
+{
+  "name": "--template--",
+  "version": "0.0.1",
+  "description": "NodeJS project template",
+  "license": "MIT",
+  "main": "app.js",
+  "repository": {
+    "type": "git"
+  },
+  "engines": {
+    "node": ">=16.17.0 <18.0.0",
+    "npm": ">=8.19.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.16.5",
+    "dotenv": "^12.0.4",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "start:dev": "nodemon --inspect -r dotenv/config app.js dotenv_config_path=./.env",
+    "lint": "eslint --fix **/*.js",
+    "format": "prettier -w .",
+    "test": "jest",
+    "test:cov": "jest --coverage --maxWorkers=1",
+    "uuid": "node -e \"console.log(require('uuid').v4())"
+  },
+  "nodemonConfig": {
+    "ignore": []
+  },
+  "jest": {
+    "rootDir": ".",
+    "testRegex": ".*\\.spec\\.js$",
+    "collectCoverageFrom": [
+      "**/*.js"
+    ],
+    "modulePathIgnorePatterns": [
+      "./.eslintrc.js",
+      "./assets",
+      "./coverage"
+    ],
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "node"
+  }
+}
