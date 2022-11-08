@@ -1,8 +1,13 @@
-const express = require('express');
+// configs
+const EnvConfig = require('./modules/env.config');
+const ServerConfig = require('./modules/server.config');
 
-const app = express();
-const port = process.env.PORT || 3000;
+// modules
+// TODO
 
-app.listen(port, () => {
-  console.log(`Listening on ${port}`);
-});
+// app router/middleware
+const AppMiddleware = require('./mdw/app.mdw');
+
+const AppModule = [EnvConfig, ServerConfig, AppMiddleware];
+
+AppModule.forEach((module) => module && module.init());
