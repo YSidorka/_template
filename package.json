@@ -1,11 +1,13 @@
 {
   "name": "--template--",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "NodeJS project template",
+  "author": "YSidorka",
   "license": "MIT",
   "main": "app.js",
   "repository": {
-    "type": "git"
+    "type": "git",
+    "url": "git+https://github.com/YSidorka/_template.git"
   },
   "engines": {
     "node": ">=16.17.0 <18.0.0",
