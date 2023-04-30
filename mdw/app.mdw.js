@@ -15,6 +15,9 @@ function appInit() {
 
     // middleware to return memory status
     app.use(MemoryRouter);
+
+    // error handler
+    app.use(ConfigMiddleware.$ERRORHandler);
   } catch (err) {
     console.log(`Error appInit:`, err.message);
   }

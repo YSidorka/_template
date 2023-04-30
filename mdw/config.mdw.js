@@ -1,5 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const { setResponseHeader } = require('../common/utils');
 
 const bodyParserMdw = express.Router();
 const cookieParserMdw = express.Router();
@@ -24,6 +25,7 @@ function setBodyParser(router) {
   router.use(express.urlencoded({ extended: true }));
 
   // get all data/stuff of the body (POST) parameters
+  router.use(express.json());
   router.use(
     express.json({
       limit: '5mb',
@@ -36,6 +38,14 @@ function setCookieParser(router) {
   router.use(cookieParser());
 }
 
+function errorHandlerMdw(err, req, res, next) {
+  if (!err) next();
+  setResponseHeader(res, { appJSON: true, noRobots: true, noCache: true });
+
+  const code = err.code || 500;
+  return res.status(code).send({ code, ...err });
+}
+
 module.exports = {
   init: (app) => {
     console.log('App config / middleware');
@@ -43,5 +53,6 @@ module.exports = {
   },
 
   $BODYParser: bodyParserMdw,
-  $COOKIEParser: cookieParserMdw
+  $COOKIEParser: cookieParserMdw,
+  $ERRORHandler: errorHandlerMdw
 };

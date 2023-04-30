@@ -4,8 +4,8 @@ const HOUR = MINUTE * 60;
 const DAY = HOUR * 24;
 const WEEK = DAY * 7;
 
-const MAIN_DIR = process.env.INIT_CWD;
-const MEMORY_ROUTE = '*';
+const MAIN_DIR = process?.env.INIT_CWD || process?.env.PWD;
+const MEMORY_ROUTE = '/__memory';
 
 module.exports = {
   SECOND,
